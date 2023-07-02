@@ -7,3 +7,7 @@ clean:
 
 remove:
 	rm -rf focal jammy lunar mantic
+
+chmod:
+	chmod -R a+r .
+	chmod    a+x .
