@@ -7,5 +7,5 @@ IndexOptions FancyIndexing FoldersFirst IgnoreCase VersionSort SuppressDescripti
 IndexIgnore *.checked *.log *.sh *.txt *.version Makefile config
 
 AddDefaultCharset UTF-8
-AddCharset        UTF-8      .checked .log .sh .txt .version
-AddType           text/plain .checked .log .sh .txt .version
+AddCharset        UTF-8      .checked .log .md .sh .txt .version
+AddType           text/plain .checked .log .md .sh .txt .version
