@@ -1,0 +1,7 @@
+*.checked
+*.log
+*.version
+focal
+jammy
+lunar
+mantic
