@@ -24,17 +24,28 @@ cd "${UBUNTU}"
         wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium_${V2}_amd64.deb"
         wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium-dbg_${V2}_amd64.deb"
 
-        true > .htaccess
-
-        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/chromium_${V2}_amd64.deb" | tee -a .htaccess
-        echo "RewriteRule ^ ${REMOTE}chromium_${V2}_amd64.deb [L,R=301]"        | tee -a .htaccess
-
-        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/chromium-dbg_${V2}_amd64.deb" | tee -a .htaccess
-        echo "RewriteRule ^ ${REMOTE}chromium-dbg_${V2}_amd64.deb [L,R=301]"        | tee -a .htaccess
-
     cd ..
 
 cd ..
+
+true > "${UBUNTU}/pool/.htaccess"
+
+for LINK in $UBUNTU/$UBUNTU $LINKS; do
+
+    SOURCE=${LINK%%/*}
+    DEST=${LINK#*/}
+
+    if [ "${SOURCE}" == "${UBUNTU}" ]; then
+
+        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${DEST}/pool/chromium_${V2}_amd64.deb" | tee -a "${DEST}/pool/.htaccess"
+        echo "RewriteRule ^ ${REMOTE}chromium_${V2}_amd64.deb [L,R=301]"                     | tee -a "${DEST}/pool/.htaccess"
+
+        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${DEST}/pool/chromium-dbg_${V2}_amd64.deb" | tee -a "${DEST}/pool/.htaccess"
+        echo "RewriteRule ^ ${REMOTE}chromium-dbg_${V2}_amd64.deb [L,R=301]"                     | tee -a "${DEST}/pool/.htaccess"
+
+    fi
+
+done
 
 ./make-repo.sh ${UBUNTU}
 
