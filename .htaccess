@@ -1,0 +1,11 @@
+RewriteEngine On
+
+Options +FollowSymLinks
+
+Options +Indexes
+IndexOptions FancyIndexing FoldersFirst IgnoreCase VersionSort SuppressDescription
+IndexIgnore *.checked *.log *.sh *.txt *.version Makefile config
+
+AddDefaultCharset UTF-8
+AddCharset        UTF-8      .checked .log .sh .txt .version
+AddType           text/plain .checked .log .sh .txt .version
