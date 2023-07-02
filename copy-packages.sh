@@ -19,10 +19,12 @@ cd "${UBUNTU}"
 
     cd 'pool'
 
-        wget -o- --progress=dot:giga "${REMOTE}${V2}"
+        wget -o- --progress=dot:giga "${REMOTE}${V2}.dsc"
+        wget -o- --progress=dot:giga "${REMOTE}${V2}.tar.xz"
+        wget -o- --progress=dot:giga "${REMOTE}${V2}_amd64.deb"
 
-        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${V2}" | tee    .htaccess
-        echo "RewriteRule ^ ${REMOTE}${V2} [L,R=301]"        | tee -a .htaccess
+        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${V2}_amd64.deb" | tee    .htaccess
+        echo "RewriteRule ^ ${REMOTE}${V2}_amd64.deb [L,R=301]"        | tee -a .htaccess
 
     cd ..
 

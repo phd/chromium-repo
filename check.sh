@@ -4,7 +4,7 @@ cd $(dirname "$0")
 
 . config
 
-LIST=$(LS_COLORS=no lftp --norc --rcfile .lftprc -e 'cls -1; exit' "${REMOTE}" 2>/dev/null | grep -E '\.deb$' | grep -E '^chromium_' | sort -V)
+LIST=$(LS_COLORS=no lftp --norc --rcfile .lftprc -e 'cls -1; exit' "${REMOTE}" 2>/dev/null | grep -E '_amd64\.deb$' | grep -E '^chromium_' | sort -V)
 
 for RELEASE in $RELEASES; do
 
@@ -16,11 +16,12 @@ for RELEASE in $RELEASES; do
         F_CHECKED="check.sh.${UBUNTU}.checked"
 
     V1=$(cat "${F_VERSION}" 2>/dev/null || true)
-    V1=${V1:-unknown}
+    V1=${V1:-'unknown'}
 
-    V2=$(echo "${LIST}" | grep "+${MINT}_")
+    V2=$(echo "${LIST}" | grep "+${MINT}_" | tail -n1)
+    V2=${V2%'_amd64.deb'}
 
-    regexp='chromium_.*\.deb'
+    regexp='chromium_.*'
 
     if [[ ! "${V2}" =~ $regexp ]]; then
 
