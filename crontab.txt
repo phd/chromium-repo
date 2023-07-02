@@ -1,1 +1,1 @@
- 0,30 * * * * /bin/bash -c ~/public_html/phd-chromium-browser/check.sh >/dev/null 2>&1
+ 0,30 * * * * /bin/bash -c ~/public_html/chromium/check.sh >/dev/null 2>&1
