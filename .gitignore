@@ -2,6 +2,7 @@
 *.log
 *.version
 focal
+kinetic
 jammy
 lunar
 mantic

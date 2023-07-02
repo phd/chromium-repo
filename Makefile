@@ -6,7 +6,7 @@ clean:
 	rm -f *.log
 
 remove:
-	rm -rf focal jammy lunar mantic
+	rm -rf focal kinetic jammy lunar mantic
 
 chmod:
 	chmod -R a+r .
