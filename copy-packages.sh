@@ -47,6 +47,9 @@ for LINK in $UBUNTU/$UBUNTU $LINKS; do
 
 done
 
+touch "${UBUNTU}"
+touch "${UBUNTU}/pool"
+
 ./make-repo.sh ${UBUNTU}
 
 exit 0
