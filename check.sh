@@ -33,7 +33,7 @@ for RELEASE in $RELEASES; do
 
         echo "${V2}"
 
-        mv "${F_VERSION}" "${F_VERSION_OLD}" || true
+        mv "${F_VERSION}" "${F_VERSION_OLD}" 2>/dev/null || true
         echo "${V2}" > "${F_VERSION}"
         touch "${F_VERSION}"
         ./mail.sh "${EMAIL}" "chromium-browser updated in Mint ($RELEASE)" "${V1}\n->\n${V2}\n"
