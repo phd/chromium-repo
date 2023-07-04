@@ -38,10 +38,10 @@ for LINK in $UBUNTU/$UBUNTU $LINKS; do
     if [ "${SOURCE}" == "${UBUNTU}" ]; then
 
         echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${DEST}/pool/chromium_${V2}_amd64.deb" | tee -a "${DEST}/pool/.htaccess"
-        echo "RewriteRule ^ ${REMOTE}chromium_${V2}_amd64.deb [L,R=301]"                     | tee -a "${DEST}/pool/.htaccess"
+        echo "RewriteRule ^ ${REMOTE}chromium_${V2}_amd64.deb [L,R=302]"                     | tee -a "${DEST}/pool/.htaccess"
 
         echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${DEST}/pool/chromium-dbg_${V2}_amd64.deb" | tee -a "${DEST}/pool/.htaccess"
-        echo "RewriteRule ^ ${REMOTE}chromium-dbg_${V2}_amd64.deb [L,R=301]"                     | tee -a "${DEST}/pool/.htaccess"
+        echo "RewriteRule ^ ${REMOTE}chromium-dbg_${V2}_amd64.deb [L,R=302]"                     | tee -a "${DEST}/pool/.htaccess"
 
     fi
 
