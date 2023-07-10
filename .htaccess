@@ -2,10 +2,15 @@ RewriteEngine On
 
 Options +FollowSymLinks
 
+ServerSignature Off
+
 Options +Indexes
 IndexOptions FancyIndexing FoldersFirst IgnoreCase VersionSort SuppressDescription
 IndexIgnore *.checked *.log *.old *.sh *.txt *.version config Makefile
 
+AddIcon /icons/text.png       *.gpg *.md InRelease Packages Release
+AddIcon /icons/compressed.png *.xz *.deb
+
 AddDefaultCharset UTF-8
-AddCharset        UTF-8      .checked .dsc .log .md .old .sh .txt .version
-AddType           text/plain .checked .dsc .log .md .old .sh .txt .version
+AddCharset        UTF-8      .checked .dsc .gpg .log .md .old .sh .txt .version
+AddType           text/plain .checked .dsc .gpg .log .md .old .sh .txt .version
