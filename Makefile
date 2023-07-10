@@ -1,9 +1,10 @@
 all:
 
 clean:
-	rm -f *.version
 	rm -f *.checked
 	rm -f *.log
+	rm -f *.old
+	rm -f *.version
 
 remove:
 	rm -rf focal kinetic jammy lunar mantic

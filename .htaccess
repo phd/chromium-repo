@@ -4,8 +4,8 @@ Options +FollowSymLinks
 
 Options +Indexes
 IndexOptions FancyIndexing FoldersFirst IgnoreCase VersionSort SuppressDescription
-IndexIgnore *.checked *.log *.sh *.txt *.version Makefile config
+IndexIgnore *.checked *.log *.old *.sh *.txt *.version Makefile config
 
 AddDefaultCharset UTF-8
-AddCharset        UTF-8      .checked .log .md .sh .txt .version
-AddType           text/plain .checked .log .md .sh .txt .version
+AddCharset        UTF-8      .checked .log .md .old .sh .txt .version
+AddType           text/plain .checked .log .md .old .sh .txt .version

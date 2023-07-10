@@ -1,5 +1,6 @@
 *.checked
 *.log
+*.old
 *.version
 focal
 kinetic
