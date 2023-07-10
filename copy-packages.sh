@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 cd $(dirname "$0")
+DIR=$(pwd)
 
 . config
 
@@ -15,41 +16,35 @@ MINT=${RELEASE#*/}
 
 cd "${UBUNTU}"
 
+    rm -f 'pool/latest/.htaccess'
+    rm -f 'pool/latest'
+
     mkdir -p 'pool'
 
     cd 'pool'
 
-        wget -c -o- --progress=dot -e dotbytes=1K  "${REMOTE}chromium_${V2}.dsc"
-        wget -c -o- --progress=dot -e dotbytes=10K "${REMOTE}chromium_${V2}.tar.xz"
-        wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium_${V2}_amd64.deb"
-        wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium-dbg_${V2}_amd64.deb"
+        mkdir -p "chromium_${V2}"
+
+        cd "chromium_${V2}"
+
+            wget -c -o- --progress=dot -e dotbytes=1K  "${REMOTE}chromium_${V2}.dsc"
+            wget -c -o- --progress=dot -e dotbytes=10K "${REMOTE}chromium_${V2}.tar.xz"
+            wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium_${V2}_amd64.deb"
+            wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium-dbg_${V2}_amd64.deb"
+
+            echo "RewriteRule ^(.+\.(deb|tar\..+))$ ${REMOTE}\$1 [L,R=302]" | tee '.htaccess'
+
+        cd ..
+
+        "${DIR}/make-repo.sh" "${UBUNTU}"
+
+        ln -s "chromium_${V2}" 'latest'
 
     cd ..
 
 cd ..
 
-true > "${UBUNTU}/pool/.htaccess"
-
-for LINK in $UBUNTU/$UBUNTU $LINKS; do
-
-    SOURCE=${LINK%%/*}
-    DEST=${LINK#*/}
-
-    if [ "${SOURCE}" == "${UBUNTU}" ]; then
-
-        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${DEST}/pool/chromium_${V2}_amd64.deb" | tee -a "${DEST}/pool/.htaccess"
-        echo "RewriteRule ^ ${REMOTE}chromium_${V2}_amd64.deb [L,R=302]"                     | tee -a "${DEST}/pool/.htaccess"
-
-        echo "RewriteCond %{REQUEST_FILENAME} =${PWD}/${DEST}/pool/chromium-dbg_${V2}_amd64.deb" | tee -a "${DEST}/pool/.htaccess"
-        echo "RewriteRule ^ ${REMOTE}chromium-dbg_${V2}_amd64.deb [L,R=302]"                     | tee -a "${DEST}/pool/.htaccess"
-
-    fi
-
-done
-
 touch "${UBUNTU}"
 touch "${UBUNTU}/pool"
-
-./make-repo.sh ${UBUNTU}
 
 exit 0
