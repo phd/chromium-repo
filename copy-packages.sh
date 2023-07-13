@@ -32,7 +32,7 @@ cd "${UBUNTU}"
             wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium_${V2}_amd64.deb"
             wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium-dbg_${V2}_amd64.deb"
 
-            echo "RewriteRule ^(.+\.(deb|tar\..+))$ ${REMOTE}\$1 [L,R=302]" | tee '.htaccess'
+            echo "RewriteRule ^(.+\.(deb|tar\..+))$ ${REMOTE}\$1 [L,R=307]" | tee '.htaccess'
 
         cd ..
 
