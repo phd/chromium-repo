@@ -8,7 +8,7 @@ DIR=$(pwd)
 for RELEASE in $RELEASES; do
     UBUNTU=${RELEASE%%/*}
     MINT=${RELEASE#*/}
-    mkdir -p "${UBUNTU}" || true
+    mkdir -p "${UBUNTU}/pool" || true
 done
 
 for LINK in $LINKS; do

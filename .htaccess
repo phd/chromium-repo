@@ -1,12 +1,18 @@
 RewriteEngine On
 
+#RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+/pool/.+)$ "download.php?$1" [NE,NS,L]
+
+XSendFile On
+
 Options +FollowSymLinks
 
 ServerSignature Off
 
 Options +Indexes
-IndexOptions FancyIndexing FoldersFirst IgnoreCase VersionSort SuppressDescription
-IndexIgnore *.checked *.log *.old *.sh *.txt *.version config Makefile
+IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst IgnoreCase VersionSort DescriptionWidth=*
+IndexIgnore *.php *.checked *.log *.old *.sh *.txt *.version config Makefile *.REDIRECT *.DOWNLOADS
 
 AddIcon /icons/text.png       *.gpg *.md InRelease Packages Release
 AddIcon /icons/compressed.png *.xz *.deb

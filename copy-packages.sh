@@ -16,7 +16,7 @@ MINT=${RELEASE#*/}
 
 cd "${UBUNTU}"
 
-    rm -f 'pool/latest/.htaccess'
+    rm -f 'pool/latest/*.REDIRECT'
     rm -f 'pool/latest'
 
     mkdir -p 'pool'
@@ -27,12 +27,21 @@ cd "${UBUNTU}"
 
         cd "chromium_${V2}"
 
-            wget -c -o- --progress=dot -e dotbytes=1K  "${REMOTE}chromium_${V2}.dsc"
-            wget -c -o- --progress=dot -e dotbytes=10K "${REMOTE}chromium_${V2}.tar.xz"
-            wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium_${V2}_amd64.deb"
-            wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium-dbg_${V2}_amd64.deb"
+            echo "${REMOTE}chromium_${V2}.tar.xz"        | tee "chromium_${V2}.tar.xz.REDIRECT"
+            echo
+            echo "${REMOTE}chromium_${V2}_amd64.deb"     | tee "chromium_${V2}_amd64.deb.REDIRECT"
+            echo
+            echo "${REMOTE}chromium-dbg_${V2}_amd64.deb" | tee "chromium-dbg_${V2}_amd64.deb.REDIRECT"
 
-            echo "RewriteRule ^(.+\.(deb|tar\..+))$ ${REMOTE}\$1 [L,R=307]" | tee '.htaccess'
+            echo
+
+            wget -c -o- --progress=dot -e dotbytes=1K  "${REMOTE}chromium_${V2}.dsc"
+            echo
+            wget -c -o- --progress=dot -e dotbytes=10K "${REMOTE}chromium_${V2}.tar.xz"
+            echo
+            wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium_${V2}_amd64.deb"
+            echo
+            wget -c -o- --progress=dot -e dotbytes=1M  "${REMOTE}chromium-dbg_${V2}_amd64.deb"
 
         cd ..
 
