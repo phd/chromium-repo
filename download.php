@@ -11,6 +11,8 @@
         }
     }
 
+    date_default_timezone_set("UTC");
+
     $request = $_SERVER["QUERY_STRING"];
 
     if (
@@ -20,7 +22,7 @@
         die("405");
     }
 
-    if ($request === "") {
+    if (empty($request)) {
         die("400");
     }
 
@@ -55,14 +57,32 @@
         exit;
     }
 
+    $now = date("Y-m-d");
     $fp = fopen("$counter", "c+");
     flock($fp, LOCK_EX);
-    $count = intval(trim(fgets($fp))) + 1;
+    $lines = array();
+    while (($line = fgets($fp)) !== false) {
+        $line = trim($line);
+        if (!empty($line)) {
+            $lines[] = $line;
+        }
+    }
+    $date = "";
+    $count = 0;
+    if (count($lines) > 0) {
+        list($date, $count) = explode(" ", end($lines));
+    }
+    if ($date === $now) {
+        array_pop($lines);
+    } else {
+        $count = 0;
+    }
+    $count++;
+    $lines[] = "${now} ${count}";
     fseek($fp, 0);
     ftruncate($fp, 0);
-    fwrite($fp, "$count" . "\n");
+    fwrite($fp, implode("\n", $lines) . "\n");
     fflush($fp);
-    flock($fp, LOCK_UN);
     fclose($fp);
 
     if (file_exists($redirect)) {

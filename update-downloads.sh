@@ -31,9 +31,12 @@ for RELEASE in $RELEASES; do
 
                         filename=${counter%"${COUNTER_EXTENSION}"}
 
-                        count=$(<${counter})
+                        total=0
+                        while read date count; do
+                            ((total+=count))
+                        done <${counter}
 
-                        echo "AddDescription \"Downloads: ${count}\" ${filename}"
+                        echo "AddDescription \"Downloads: ${total}\" ${filename}"
 
                     done
 
