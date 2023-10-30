@@ -1,9 +1,31 @@
 <?php
 
+    if (!function_exists("str_starts_with")) {
+        function str_starts_with($haystack, $needle) {
+            return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
+        }
+    }
+    if (!function_exists("str_ends_with")) {
+        function str_ends_with($haystack, $needle) {
+            return substr_compare($haystack, $needle, -strlen($needle)) === 0;
+        }
+    }
+
     $request = $_SERVER["QUERY_STRING"];
 
-    if ($request == "") {
-        die("500");
+    if (
+        !isset($_SERVER["REDIRECT_STATUS"]) ||
+        $_SERVER["REDIRECT_STATUS"] !== "200"
+    ) {
+        die("405");
+    }
+
+    if ($request === "") {
+        die("400");
+    }
+
+    if (preg_match("/(^|\/)..\//", $request)) {
+        die("403");
     }
 
     $file = dirname($_SERVER["SCRIPT_FILENAME"]) . "/" . $request;
@@ -21,6 +43,18 @@
         die("404");
     }
 
+    if (is_dir($file)) {
+        die("406");
+    }
+
+    if (
+        str_ends_with($file, ".DOWNLOADS") ||
+        str_ends_with($file, ".REDIRECT")
+    ) {
+        readfile($file);
+        exit;
+    }
+
     $fp = fopen("$counter", "c+");
     flock($fp, LOCK_EX);
     $count = intval(trim(fgets($fp))) + 1;
@@ -35,7 +69,7 @@
         $fp = fopen("$redirect", "r");
         $url = trim(fgets($fp));
         fclose($fp);
-        header('Location: ' . $url, true, 307);
+        header("Location: " . $url, true, 307);
         exit;
     }
 
