@@ -12,11 +12,11 @@ ServerSignature Off
 
 Options +Indexes
 IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst IgnoreCase VersionSort DescriptionWidth=*
-IndexIgnore *.php *.checked *.log *.old *.sh *.txt *.version config Makefile *.REDIRECT *.DOWNLOADS
+IndexIgnore *.php *.checked *.log *.old *.sh *.txt *.version config Makefile *.DOWNLOADS *.REDIRECT
 
 AddIcon /icons/text.png       *.gpg *.md InRelease Packages Release
 AddIcon /icons/compressed.png *.xz *.deb
 
 AddDefaultCharset UTF-8
-AddCharset        UTF-8      .checked .dsc .gpg .log .md .old .sh .txt .version
-AddType           text/plain .checked .dsc .gpg .log .md .old .sh .txt .version
+AddCharset        UTF-8      .checked .dsc .gpg .log .md .old .sh .txt .version *.DOWNLOADS *.REDIRECT
+AddType           text/plain .checked .dsc .gpg .log .md .old .sh .txt .version *.DOWNLOADS *.REDIRECT

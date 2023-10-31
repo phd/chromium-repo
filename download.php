@@ -50,47 +50,46 @@
     }
 
     if (
-        str_ends_with($file, ".DOWNLOADS") ||
-        str_ends_with($file, ".REDIRECT")
+        !str_ends_with($file, ".DOWNLOADS") &&
+        !str_ends_with($file, ".REDIRECT")
     ) {
-        readfile($file);
-        exit;
-    }
 
-    $now = date("Y-m-d");
-    $fp = fopen("$counter", "c+");
-    flock($fp, LOCK_EX);
-    $lines = array();
-    while (($line = fgets($fp)) !== false) {
-        $line = trim($line);
-        if (!empty($line)) {
-            $lines[] = $line;
+        $now = date("Y-m-d");
+        $fp = fopen("$counter", "c+");
+        flock($fp, LOCK_EX);
+        $lines = array();
+        while (($line = fgets($fp)) !== false) {
+            $line = trim($line);
+            if (!empty($line)) {
+                $lines[] = $line;
+            }
         }
-    }
-    $date = "";
-    $count = 0;
-    if (count($lines) > 0) {
-        list($date, $count) = explode(" ", end($lines));
-    }
-    if ($date === $now) {
-        array_pop($lines);
-    } else {
+        $date = "";
         $count = 0;
-    }
-    $count++;
-    $lines[] = "${now} ${count}";
-    fseek($fp, 0);
-    ftruncate($fp, 0);
-    fwrite($fp, implode("\n", $lines) . "\n");
-    fflush($fp);
-    fclose($fp);
-
-    if (file_exists($redirect)) {
-        $fp = fopen("$redirect", "r");
-        $url = trim(fgets($fp));
+        if (count($lines) > 0) {
+            list($date, $count) = explode(" ", end($lines));
+        }
+        if ($date === $now) {
+            array_pop($lines);
+        } else {
+            $count = 0;
+        }
+        $count++;
+        $lines[] = "${now} ${count}";
+        fseek($fp, 0);
+        ftruncate($fp, 0);
+        fwrite($fp, implode("\n", $lines) . "\n");
+        fflush($fp);
         fclose($fp);
-        header("Location: " . $url, true, 307);
-        exit;
+
+        if (file_exists($redirect)) {
+            $fp = fopen("$redirect", "r");
+            $url = trim(fgets($fp));
+            fclose($fp);
+            header("Location: " . $url, true, 307);
+            exit;
+        }
+
     }
 
     header("Content-Length: " . filesize($file));
