@@ -35,6 +35,13 @@ cd "${UBUNTU}"
 
             echo
 
+            echo "$(date +%Y-%m-%d) 0" | tee "chromium_${V2}.dsc.DOWNLOADS"
+            echo "$(date +%Y-%m-%d) 0" | tee "chromium_${V2}.tar.xz.DOWNLOADS"
+            echo "$(date +%Y-%m-%d) 0" | tee "chromium_${V2}_amd64.deb.DOWNLOADS"
+            echo "$(date +%Y-%m-%d) 0" | tee "chromium-dbg_${V2}_amd64.deb.DOWNLOADS"
+
+            echo
+
             wget -c -o- --progress=dot -e dotbytes=1K  "${REMOTE}chromium_${V2}.dsc"
             echo
             wget -c -o- --progress=dot -e dotbytes=10K "${REMOTE}chromium_${V2}.tar.xz"
