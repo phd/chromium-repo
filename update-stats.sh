@@ -18,6 +18,10 @@ function epoch {
     echo "$(date -d "${1}" '+%s')"
 }
 
+function trim {
+    sed -E -e '1h;2,$H;$!d;g' -e 's/^[[:space:]]*//;s/[[:space:]]*$//' <<< "${!1}"
+}
+
 readarray -t dirs < <(
     for RELEASE in $RELEASES; do
         UBUNTU=${RELEASE%%/*}
@@ -84,6 +88,7 @@ for color in "${colors[@]}"; do
     VERSIONS_DATASET+="${indent}  '#${color}ff',${LF}"
 done
 VERSIONS_DATASET+="${indent}],${LF}"
+VERSIONS_DATASET="$(trim VERSIONS_DATASET)"
 
 indent='                '
 DAILY_DATASETS=''
@@ -104,6 +109,7 @@ for i in "${!versions[@]}"; do
     DAILY_DATASETS+="${indent}  ]${LF}"
     DAILY_DATASETS+="${indent}},${LF}"
 done
+DAILY_DATASETS="$(trim DAILY_DATASETS)"
 
 output="$(< stats.html.skel)"
 output=${output/"%(TODAY)"/"${TODAY}"}
