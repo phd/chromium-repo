@@ -12,7 +12,7 @@ ServerSignature Off
 
 Options +Indexes
 IndexOptions Charset=UTF-8 FancyIndexing FoldersFirst IgnoreCase VersionSort DescriptionWidth=*
-IndexIgnore *.php *.checked *.log *.old *.sh *.txt *.version config Makefile *.DOWNLOADS *.REDIRECT
+IndexIgnore *.php *.checked *.log *.old *.sh *.txt *.version config Makefile *.DOWNLOADS *.REDIRECT *.skel
 
 AddIcon /icons/text.png       *.gpg *.md InRelease Packages Release
 AddIcon /icons/compressed.png *.xz *.deb

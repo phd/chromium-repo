@@ -1,0 +1,150 @@
+<html>
+   <head>
+
+      <title>Chromium download statistics</title>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <style type="text/css">
+
+        #versions_chart_view {
+          overflow-x: scroll;
+          width: 100%;
+        }
+        #versions_chart_container {
+          width: calc( %(VERSIONS_COUNT) * 2em + 2em );
+          height: 20em;
+          margin-bottom: 2em;
+        }
+
+        #daily_chart_view {
+          overflow-x: scroll;
+          width: 100%;
+        }
+        #daily_chart_container {
+          width: calc( %(DAYS_COUNT) * 2em + 2em );
+          height: 20em;
+          margin-bottom: 2em;
+        }
+
+      </style>
+
+   </head>
+   <body>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+      <script>
+        Chart.defaults.font.size = 11;
+        Chart.overrides.line.spanGaps = 1*24*60*60*1000;
+      </script>
+
+      <div id="versions_chart_view">
+        <div id="versions_chart_container">
+          <canvas id="versions_chart"></canvas>
+        </div>
+      </div>
+
+      <div id="daily_chart_view">
+        <div id="daily_chart_container">
+          <canvas id="daily_chart"></canvas>
+        </div>
+      </div>
+
+      <script>
+        const versions_chart = document.getElementById('versions_chart');
+        new Chart(
+          versions_chart,
+          {
+            type: 'bar',
+            data: {
+              datasets: [
+                {
+                  borderWidth: 1,
+                  %(VERSIONS_DATASET)
+                }
+              ]
+            },
+            options: {
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  ticks: {
+                    maxRotation: 90,
+                    minRotation: 90,
+                    autoSkip: false
+                  }
+                },
+                y: {
+                  beginAtZero: true,
+                  position: 'right'
+                }
+              },
+              plugins: {
+                legend: {
+                  display: false
+                }
+              },
+              animation: {
+                duration: 0
+              }
+            }
+          }
+        );
+        var versions_chart_container = document.getElementById('versions_chart_view');
+        versions_chart_container.scrollLeft = versions_chart_container.scrollWidth;
+      </script>
+
+      <script>
+        const daily_chart = document.getElementById('daily_chart');
+        new Chart(
+          daily_chart,
+          {
+            type: 'line',
+            data: {
+              datasets: [
+                %(DAILY_DATASETS)
+              ]
+            },
+            options: {
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  type: 'time',
+                  time: {
+                    unit: 'day',
+                    displayFormats: {
+                      day: 'yyyy-MM-dd'
+                    }
+                  },
+                  ticks: {
+                    maxRotation: 90,
+                    minRotation: 90,
+                    autoSkip: false
+                  },
+                  min: '%(DATE_MIN)',
+                  max: '%(TODAY)'
+                },
+                y: {
+                  beginAtZero: true,
+                  position: 'right'
+                }
+              },
+              plugins: {
+                legend: {
+                  display: false
+                }
+              },
+              animation: {
+                duration: 0
+              }
+            }
+          }
+        );
+        var daily_chart_container = document.getElementById('daily_chart_view');
+        daily_chart_container.scrollLeft = daily_chart_container.scrollWidth;
+      </script>
+
+   </body>
+</html>
