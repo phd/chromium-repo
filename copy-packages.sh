@@ -16,7 +16,7 @@ MINT=${RELEASE#*/}
 
 cd "${UBUNTU}"
 
-    rm -f 'pool/latest/*.REDIRECT'
+    rm -f pool/latest/*.REDIRECT
     rm -f 'pool/latest'
 
     mkdir -p 'pool'
