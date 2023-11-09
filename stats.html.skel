@@ -22,7 +22,7 @@
           width: 100%;
         }
         #daily_chart_container {
-          width: calc( %(DAYS_COUNT) * 2em + 2em );
+          width: calc( 1em + %(DAYS_COUNT) * 1.5em + 1em + 2em );
           height: 20em;
           margin-bottom: 2em;
         }
@@ -118,13 +118,14 @@
                       day: 'yyyy-MM-dd'
                     }
                   },
+                  min: '%(DATE_MIN)',
+                  max: '%(TODAY)',
                   ticks: {
                     maxRotation: 90,
                     minRotation: 90,
                     autoSkip: false
                   },
-                  min: '%(DATE_MIN)',
-                  max: '%(TODAY)'
+                  offset: true
                 },
                 y: {
                   beginAtZero: true,
