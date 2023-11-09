@@ -37,7 +37,7 @@ VERSIONS_COUNT="${#versions}"
 
 colors=()
 for version in "${versions[@]}"; do
-    color="$(md5sum <<< "${version}" | cut -c1-6 | tr '012def' '333ccc')"
+    color="$(md5sum <<< "${version}" | cut -c2-7 | tr '012def' '333ccc')"
     colors+=("${color}")
 done
 
