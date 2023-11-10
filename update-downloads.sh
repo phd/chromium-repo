@@ -33,7 +33,7 @@ for RELEASE in $RELEASES; do
 
                         total=0
                         while read date count; do
-                            ((total+=count))
+                            ((total+=count)) || true
                         done <${counter}
 
                         echo "AddDescription \"Downloads: ${total}\" ${filename}"
