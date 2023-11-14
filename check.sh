@@ -27,7 +27,7 @@ for RELEASE in $RELEASES; do
 
         echo 'error'
 
-        ./mail.sh "${EMAIL}" 'chromium-browser version check error' "${V1}\n->\nhttps://mirrors.edge.kernel.org/linuxmint-packages/pool/upstream/c/chromium/\n\n${V2}\n"
+        ./mail.sh "${EMAIL}" 'chromium-browser version check error' <<< "${V1}\n->\nhttps://mirrors.edge.kernel.org/linuxmint-packages/pool/upstream/c/chromium/\n\n${V2}\n"
 
     elif [ "${V1}" != "${V2}" ]; then
 
@@ -36,7 +36,7 @@ for RELEASE in $RELEASES; do
         mv "${F_VERSION}" "${F_VERSION_OLD}" 2>/dev/null || true
         echo "${V2}" > "${F_VERSION}"
         touch "${F_VERSION}"
-        ./mail.sh "${EMAIL}" "chromium-browser updated in Mint ($RELEASE)" "${V1}\n->\n${V2}\n"
+        ./mail.sh "${EMAIL}" "chromium-browser updated in Mint ($RELEASE)" <<< "${V1}\n->\n${V2}\n"
 
         echo "${PWD}/copy-packages-run.sh ${RELEASE} ${V1} ${V2}" | at now
 
