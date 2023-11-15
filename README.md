@@ -18,3 +18,8 @@ Installation:
     $ sudo apt-get remove chromium-browser
 
     $ sudo apt-get install chromium
+
+Source code:
+------------
+
+Visit https://github.com/phd/chromium-repo for a full source code.
