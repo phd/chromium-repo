@@ -35,10 +35,10 @@ cd "${UBUNTU}"
 
             echo
 
-            echo "$(date +%Y-%m-%d) 0" | tee "chromium_${V2}.dsc.DOWNLOADS"
-            echo "$(date +%Y-%m-%d) 0" | tee "chromium_${V2}.tar.xz.DOWNLOADS"
-            echo "$(date +%Y-%m-%d) 0" | tee "chromium_${V2}_amd64.deb.DOWNLOADS"
-            echo "$(date +%Y-%m-%d) 0" | tee "chromium-dbg_${V2}_amd64.deb.DOWNLOADS"
+            echo "$(date --utc +%Y-%m-%d) 0" | tee "chromium_${V2}.dsc.DOWNLOADS"
+            echo "$(date --utc +%Y-%m-%d) 0" | tee "chromium_${V2}.tar.xz.DOWNLOADS"
+            echo "$(date --utc +%Y-%m-%d) 0" | tee "chromium_${V2}_amd64.deb.DOWNLOADS"
+            echo "$(date --utc +%Y-%m-%d) 0" | tee "chromium-dbg_${V2}_amd64.deb.DOWNLOADS"
 
             echo
 

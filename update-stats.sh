@@ -15,7 +15,7 @@ function print_array {
 }
 
 function epoch {
-    echo "$(date -d "${1}" '+%s')"
+    echo "$(date --utc -d "${1}" '+%s')"
 }
 
 function trim {
@@ -41,7 +41,7 @@ for version in "${versions[@]}"; do
     colors+=("${color}")
 done
 
-TODAY="$(date '+%Y-%m-%d')"
+TODAY="$(date --utc '+%Y-%m-%d')"
 
 downloads=()
 totals=()
