@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 REMOTE='https://mirrors.edge.kernel.org/linuxmint-packages/pool/upstream/c/chromium/'
-RELEASES='focal/una jammy/victoria'
+RELEASES='focal/una jammy/virginia'
 LINKS='jammy/kinetic jammy/lunar jammy/mantic jammy/noble'
 EMAIL='phd@phd.re'
 
