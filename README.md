@@ -15,14 +15,12 @@ Supported Ubuntu releases:
 
 
 Installation:
--------------
+-------------      
 
-    $ source /etc/lsb-release
+    $ sudo wget "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x869689FE09306074" -O /etc/apt/trusted.gpg.d/phd-chromium.asc
 
-    $ echo "deb https://freeshell.de/phd/chromium/${DISTRIB_CODENAME} /" \
+    $ echo "deb [signed-by=/etc/apt/trusted.gpg.d/phd-chromium.asc] https://freeshell.de/phd/chromium/$(lsb_release -sc) /" \
       | sudo tee /etc/apt/sources.list.d/phd-chromium.list
-
-    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 869689FE09306074
 
     $ sudo apt-get update
 
@@ -34,7 +32,7 @@ Installation:
 Signing key renewal:
 --------------------
 
-    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 869689FE09306074
+    $ sudo wget "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x869689FE09306074" -O /etc/apt/trusted.gpg.d/phd-chromium.asc
 
 
 Repository:
