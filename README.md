@@ -11,14 +11,15 @@ Supported Ubuntu releases:
   * Ubuntu 22.10 Kinetic (EOL)
   * Ubuntu 23.04 Lunar (EOL)
   * Ubuntu 23.10 Mantic
-  * Ubuntu 24.04 Noble (LTS, unreleased)
+  * Ubuntu 24.04 Noble (LTS)
+  * Ubuntu 24.10 Oracular (unreleased)
 
 
 Installation:
 -------------
 
     $ sudo wget 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x869689FE09306074' \
-    -O '/etc/apt/trusted.gpg.d/phd-chromium.asc'
+      -O '/etc/apt/trusted.gpg.d/phd-chromium.asc'
 
     $ echo "deb https://freeshell.de/phd/chromium/$(lsb_release -sc) /" \
       | sudo tee /etc/apt/sources.list.d/phd-chromium.list
@@ -34,7 +35,7 @@ Signing key renewal:
 --------------------
 
     $ sudo wget 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x869689FE09306074' \
-    -O '/etc/apt/trusted.gpg.d/phd-chromium.asc'
+      -O '/etc/apt/trusted.gpg.d/phd-chromium.asc'
 
 
 Repository:
