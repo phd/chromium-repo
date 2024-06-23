@@ -33,7 +33,7 @@ readarray -t dirs < <(
 readarray -t versions < <(
     print_array dirs | sed -E 's,^([^/]+)/pool/chromium_([^~]+).*$,\2 \1,'
 )
-VERSIONS_COUNT="${#versions}"
+VERSIONS_COUNT="${#versions[@]}"
 
 colors=()
 for version in "${versions[@]}"; do
