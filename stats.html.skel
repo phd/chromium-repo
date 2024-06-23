@@ -12,7 +12,7 @@
           width: 100%;
         }
         #versions_chart_container {
-          width: calc( %(VERSIONS_COUNT) * 2em + 2em );
+          width: calc( %(VERSIONS_COUNT) * 1em + 1em + 2em );
           height: 20em;
           margin-bottom: 2em;
         }
