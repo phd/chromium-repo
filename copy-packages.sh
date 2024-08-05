@@ -14,6 +14,10 @@ MINT=${RELEASE#*/}
 
 ./make-directories.sh
 
+function redirect_tee {
+    [ "${REDIRECT}" == '1' ] && tee "$1" || cat
+}
+
 cd "${UBUNTU}"
 
     rm -f pool/latest/*.REDIRECT
@@ -27,11 +31,11 @@ cd "${UBUNTU}"
 
         cd "chromium_${V2}"
 
-            echo "${REMOTE}chromium_${V2}.tar.xz"        | tee "chromium_${V2}.tar.xz.REDIRECT"
+            echo "${REMOTE}chromium_${V2}.tar.xz"        | redirect_tee "chromium_${V2}.tar.xz.REDIRECT"
             echo
-            echo "${REMOTE}chromium_${V2}_amd64.deb"     | tee "chromium_${V2}_amd64.deb.REDIRECT"
+            echo "${REMOTE}chromium_${V2}_amd64.deb"     | redirect_tee "chromium_${V2}_amd64.deb.REDIRECT"
             echo
-            echo "${REMOTE}chromium-dbg_${V2}_amd64.deb" | tee "chromium-dbg_${V2}_amd64.deb.REDIRECT"
+            echo "${REMOTE}chromium-dbg_${V2}_amd64.deb" | redirect_tee "chromium-dbg_${V2}_amd64.deb.REDIRECT"
 
             echo
 

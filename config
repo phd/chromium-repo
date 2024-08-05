@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 REMOTE='https://mirrors.edge.kernel.org/linuxmint-packages/pool/upstream/c/chromium/'
+REDIRECT='1'
 RELEASES='focal/una jammy/virginia noble/wilma'
 LINKS='jammy/kinetic jammy/lunar jammy/mantic noble/oracular'
 EMAIL='phd@phd.re'
