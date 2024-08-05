@@ -12,3 +12,6 @@ remove:
 chmod:
 	chmod -R a+r .
 	chmod    a+x .
+
+dependencies:
+	sudo apt-get install apt-utils gpg gzip wget
