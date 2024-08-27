@@ -18,13 +18,7 @@ Supported Ubuntu releases:
 Installation:
 -------------
 
-    $ sudo wget 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x869689FE09306074' \
-      -O '/etc/apt/trusted.gpg.d/phd-chromium.asc'
-
-    $ echo "deb https://freeshell.de/phd/chromium/$(lsb_release -sc) /" \
-      | sudo tee /etc/apt/sources.list.d/phd-chromium.list
-
-    $ sudo apt-get update
+    $ curl -fsSL https://raw.githubusercontent.com/eneiasramos/phd-chromium-repo/master/repo.sh | sudo bash - 
 
     $ sudo apt-get remove chromium-browser
 
