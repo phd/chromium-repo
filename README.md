@@ -10,9 +10,10 @@ Supported Ubuntu releases:
   * Ubuntu 22.04 Jammy (LTS)
   * Ubuntu 22.10 Kinetic (EOL)
   * Ubuntu 23.04 Lunar (EOL)
-  * Ubuntu 23.10 Mantic
+  * Ubuntu 23.10 Mantic (EOL)
   * Ubuntu 24.04 Noble (LTS)
-  * Ubuntu 24.10 Oracular (unreleased)
+  * Ubuntu 24.10 Oracular
+  * Ubuntu 25.04 Plucky (unreleased)
 
 
 Installation:
