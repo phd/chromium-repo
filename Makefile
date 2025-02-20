@@ -13,5 +13,8 @@ chmod:
 	chmod -R a+r .
 	chmod    a+x .
 
+directories:
+	./make-directories.sh
+
 dependencies:
 	sudo apt-get install apt-utils gpg gzip wget
