@@ -7,6 +7,11 @@ DIR=$(pwd)
 
 UBUNTU="${1}"
 
+if [ -z "${UBUNTU}" ]; then
+  echo "error: repository name missing"
+  exit 1
+fi
+
 cd "${UBUNTU}"
 
 #dpkg-scanpackages -m pool 2>/dev/null | gzip > Packages.gz
