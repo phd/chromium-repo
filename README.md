@@ -6,15 +6,18 @@ Repositories for Chromium browser .deb packages originally released by Linux Min
 
 Supported Ubuntu releases:
 
-  * Ubuntu 20.04 Focal (LTS)
   * Ubuntu 22.04 Jammy (LTS)
   * Ubuntu 22.10 Kinetic (EOL)
   * Ubuntu 23.04 Lunar (EOL)
   * Ubuntu 23.10 Mantic (EOL)
   * Ubuntu 24.04 Noble (LTS)
-  * Ubuntu 24.10 Oracular
-  * Ubuntu 25.04 Plucky (unreleased)
+  * Ubuntu 24.10 Oracular (EOL)
+  * Ubuntu 25.04 Plucky
+  * Ubuntu 25.10 Questing (unreleased)
 
+Ubuntu releases that are no longer supported:
+
+  * Ubuntu 20.04 Focal (LTS)
 
 Installation:
 -------------
