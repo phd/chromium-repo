@@ -1,5 +1,9 @@
 <?php
 
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
+
     if (!function_exists("str_starts_with")) {
         function str_starts_with($haystack, $needle) {
             return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
@@ -99,9 +103,11 @@
     header("Cache-Control: post-check=0, pre-check=0", false);
     header("Pragma: no-cache");
 
-    if (in_array("mod_xsendfile", apache_get_modules())) {
-        header("X-SendFile: $file");
-        exit;
+    if (function_exists("apache_get_modules")) {
+        if (in_array("mod_xsendfile", apache_get_modules())) {
+            header("X-SendFile: $file");
+            exit;
+        }
     }
 
     if (ob_get_level()) {
