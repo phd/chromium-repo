@@ -2,7 +2,7 @@
 
 REMOTE='https://mirrors.edge.kernel.org/linuxmint-packages/pool/upstream/c/chromium/'
 REDIRECT='1'
-RELEASES='focal/una jammy/virginia noble/zena'
+RELEASES='focal/una jammy/mint21 noble/mint22'
 LINKS='jammy/kinetic jammy/lunar jammy/mantic noble/oracular noble/plucky noble/questing noble/resolute noble/stonking'
 EMAIL='phd@phd.re'
 

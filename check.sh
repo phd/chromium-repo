@@ -19,7 +19,7 @@ for RELEASE in $RELEASES; do
     V1=$(cat "${F_VERSION}" 2>/dev/null || true)
     V1=${V1:-'unknown'}
 
-    V2=$(echo "${LIST}" | grep "+${MINT}_" | tail -n1)
+    V2=$(echo "${LIST}" | grep -E "\+${MINT}[_.]" | tail -n1)
     V2=${V2#'chromium_'}
     V2=${V2%'_amd64.deb'}
 

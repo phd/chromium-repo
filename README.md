@@ -1,4 +1,4 @@
-Chromium .deb repositories for Ubuntu 20.04+
+Chromium .deb repositories for Ubuntu 22.04+
 ============================================
 
 
@@ -12,8 +12,10 @@ Supported Ubuntu releases:
   * Ubuntu 23.10 Mantic (EOL)
   * Ubuntu 24.04 Noble (LTS)
   * Ubuntu 24.10 Oracular (EOL)
-  * Ubuntu 25.04 Plucky
-  * Ubuntu 25.10 Questing (unreleased)
+  * Ubuntu 25.04 Plucky (EOL)
+  * Ubuntu 25.10 Questing (EOL)
+  * Ubuntu 26.04 Resolute (LTS)
+  * Ubuntu 26.10 Stonking (unreleased)
 
 Ubuntu releases that are no longer supported:
 
